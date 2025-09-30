@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dov7ywfa22odu"]
+
+[ext_resource type="Script" uid="uid://bj0p5e0ymjchh" path="res://Scripts/enemy.gd" id="1_hghv2"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_hghv2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_802xl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_skjeu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
+size = Vector2(192, 192)
+
+[node name="Inimigo" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_hghv2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("ImageTexture_hghv2")
+
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_802xl")
+
+[node name="Hit_Area2D" type="Area2D" parent="."]
+
+[node name="HitCollisionShape2D" type="CollisionShape2D" parent="Hit_Area2D"]
+shape = SubResource("CircleShape2D_skjeu")
+
+[node name="CampoDeVisao_Area2D" type="Area2D" parent="."]
+
+[node name="VisaoCollisionShape2D" type="CollisionShape2D" parent="CampoDeVisao_Area2D"]
+shape = SubResource("RectangleShape2D_hghv2")
+
+[connection signal="body_entered" from="Hit_Area2D" to="." method="_on_hit_area_2d_body_entered"]
+[connection signal="body_entered" from="CampoDeVisao_Area2D" to="." method="_on_campo_de_visao_area_2d_body_entered"]
+[connection signal="body_exited" from="CampoDeVisao_Area2D" to="." method="_on_campo_de_visao_area_2d_body_exited"]

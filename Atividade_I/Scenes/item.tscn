@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://busxbhat320pm"]
+
+[ext_resource type="Script" uid="uid://dtos50jyb80xu" path="res://Scripts/item.gd" id="1_76mu4"]
+[ext_resource type="Texture2D" uid="uid://kkg86c8jam0b" path="res://Sprites/PrismaticCoin.png" id="1_ys0gr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o0n4i"]
+radius = 5.0
+
+[node name="Item" type="Area2D" groups=["item"]]
+texture_filter = 1
+script = ExtResource("1_76mu4")
+
+[node name="Item_CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o0n4i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ys0gr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

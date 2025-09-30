@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://c82fs62n5me8i"]
+[gd_scene load_steps=10 format=4 uid="uid://c82fs62n5me8i"]
 
 [ext_resource type="Texture2D" uid="uid://cjxg4gfwp3gw5" path="res://Sprites/PedraChao.png" id="1_g68pe"]
-[ext_resource type="Script" uid="uid://dx6627ts0sjhm" path="res://Scripts/player.gd" id="2_o0n4i"]
-[ext_resource type="Script" uid="uid://bj0p5e0ymjchh" path="res://Scripts/inimigo.gd" id="3_pru3k"]
+[ext_resource type="PackedScene" uid="uid://crvtbbw68d26e" path="res://Scenes/player.tscn" id="2_pru3k"]
+[ext_resource type="PackedScene" uid="uid://dov7ywfa22odu" path="res://Scenes/enemy.tscn" id="3_cckvs"]
+[ext_resource type="PackedScene" uid="uid://bqe6saqks3cdy" path="res://Scenes/interface.tscn" id="5_802xl"]
+[ext_resource type="Script" uid="uid://cj252kfrgid1h" path="res://Scripts/spawnner.gd" id="6_skjeu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o0n4i"]
 texture = ExtResource("1_g68pe")
@@ -13,32 +15,41 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_o0n4i")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pru3k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cckvs"]
+size = Vector2(2, 768)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cckvs"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_802xl"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_skjeu"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_o0n4i"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_802xl"]
+size = Vector2(768, 2)
 
 [node name="Mapa_1" type="Node2D"]
 texture_filter = 1
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = -2
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAADAAkAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAkAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAKAAAAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAAAAAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAALAAoAAAAAAAAAAAALAAsAAAAAAAAAAAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_q5pck")
 
-[node name="Divisoes" type="CanvasLayer" parent="."]
+[node name="Player" parent="." instance=ExtResource("2_pru3k")]
+position = Vector2(384, 384)
+
+[node name="Enemy" parent="." instance=ExtResource("3_cckvs")]
+position = Vector2(128, 364)
+
+[node name="Divisoes" type="Control" parent="."]
+z_index = -1
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_lock_ = true
 
 [node name="Linha1" type="ColorRect" parent="Divisoes"]
 self_modulate = Color(1, 1, 1, 0.784314)
-custom_minimum_size = Vector2(768, 8)
-offset_top = 252.0
+z_index = -1
+custom_minimum_size = Vector2(768, 4)
+layout_mode = 0
+offset_top = 254.0
 offset_right = 768.0
-offset_bottom = 260.0
+offset_bottom = 258.0
 pivot_offset = Vector2(0, 4)
 color = Color(0.103744, 0.103744, 0.103744, 1)
 metadata/_edit_group_ = true
@@ -46,66 +57,79 @@ metadata/_edit_lock_ = true
 
 [node name="Linha2" type="ColorRect" parent="Divisoes"]
 self_modulate = Color(1, 1, 1, 0.784314)
-custom_minimum_size = Vector2(768, 8)
-offset_top = 508.0
+z_index = -1
+custom_minimum_size = Vector2(768, 4)
+layout_mode = 0
+offset_top = 510.0
 offset_right = 768.0
-offset_bottom = 516.0
+offset_bottom = 514.0
 pivot_offset = Vector2(0, 4)
 color = Color(0.103744, 0.103744, 0.103744, 1)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Coluna3" type="ColorRect" parent="Divisoes"]
+[node name="Coluna1" type="ColorRect" parent="Divisoes"]
 self_modulate = Color(1, 1, 1, 0.784314)
-custom_minimum_size = Vector2(8, 768)
-offset_left = 252.0
-offset_right = 260.0
+z_index = -1
+custom_minimum_size = Vector2(4, 768)
+layout_mode = 0
+offset_left = 254.0
+offset_right = 258.0
 offset_bottom = 768.0
 pivot_offset = Vector2(4, 0)
 color = Color(0.103744, 0.103744, 0.103744, 1)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Coluna4" type="ColorRect" parent="Divisoes"]
+[node name="Coluna2" type="ColorRect" parent="Divisoes"]
 self_modulate = Color(1, 1, 1, 0.784314)
-custom_minimum_size = Vector2(8, 768)
-offset_left = 508.0
-offset_right = 516.0
+z_index = -1
+custom_minimum_size = Vector2(4, 768)
+layout_mode = 0
+offset_left = 510.0
+offset_right = 514.0
 offset_bottom = 768.0
 pivot_offset = Vector2(4, 0)
 color = Color(0.103744, 0.103744, 0.103744, 1)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Player" type="CharacterBody2D" parent="."]
-script = ExtResource("2_o0n4i")
+[node name="Bordas" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
-[node name="Player_Sprite2D" type="Sprite2D" parent="Player"]
+[node name="BordaEsquerda" type="StaticBody2D" parent="Bordas"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="Player_BodyCollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("CircleShape2D_pru3k")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bordas/BordaEsquerda"]
+position = Vector2(0, 384)
+shape = SubResource("RectangleShape2D_cckvs")
 
-[node name="Player_Area2D" type="Area2D" parent="Player"]
+[node name="BordaDireita" type="StaticBody2D" parent="Bordas"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="Player_AreaCollisionShape2D" type="CollisionShape2D" parent="Player/Player_Area2D"]
-shape = SubResource("CircleShape2D_cckvs")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bordas/BordaDireita"]
+position = Vector2(768, 384)
+shape = SubResource("RectangleShape2D_cckvs")
 
-[node name="Inimigo" type="CharacterBody2D" parent="."]
-script = ExtResource("3_pru3k")
+[node name="BordaCima" type="StaticBody2D" parent="Bordas"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="Inimigo_Sprite2D" type="Sprite2D" parent="Inimigo"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bordas/BordaCima"]
+position = Vector2(384, 0)
+shape = SubResource("RectangleShape2D_802xl")
 
-[node name="Inimigo_BodyCollisionShape2D" type="CollisionShape2D" parent="Inimigo"]
-shape = SubResource("CircleShape2D_802xl")
+[node name="BordaBaixo" type="StaticBody2D" parent="Bordas"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="Inimigo_Area2D" type="Area2D" parent="Inimigo"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bordas/BordaBaixo"]
+position = Vector2(384, 768)
+shape = SubResource("RectangleShape2D_802xl")
 
-[node name="Inimigo_CollisionShape2D" type="CollisionShape2D" parent="Inimigo/Inimigo_Area2D"]
-shape = SubResource("CircleShape2D_skjeu")
+[node name="Interface" parent="." instance=ExtResource("5_802xl")]
 
-[node name="ItensSpawn" type="Node2D" parent="."]
-
-[node name="Item" type="Area2D" parent="ItensSpawn"]
-
-[node name="Item_CollisionShape2D" type="CollisionShape2D" parent="ItensSpawn/Item"]
-shape = SubResource("CircleShape2D_o0n4i")
+[node name="Spawnner" type="Node2D" parent="."]
+script = ExtResource("6_skjeu")
