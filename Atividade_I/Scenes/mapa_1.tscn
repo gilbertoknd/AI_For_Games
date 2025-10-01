@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://c82fs62n5me8i"]
+[gd_scene load_steps=11 format=4 uid="uid://c82fs62n5me8i"]
 
 [ext_resource type="Texture2D" uid="uid://cjxg4gfwp3gw5" path="res://Sprites/PedraChao.png" id="1_g68pe"]
 [ext_resource type="PackedScene" uid="uid://crvtbbw68d26e" path="res://Scenes/player.tscn" id="2_pru3k"]
 [ext_resource type="PackedScene" uid="uid://dov7ywfa22odu" path="res://Scenes/enemy.tscn" id="3_cckvs"]
 [ext_resource type="PackedScene" uid="uid://bqe6saqks3cdy" path="res://Scenes/interface.tscn" id="5_802xl"]
 [ext_resource type="Script" uid="uid://cj252kfrgid1h" path="res://Scripts/spawnner.gd" id="6_skjeu"]
+[ext_resource type="PackedScene" uid="uid://c1ppnkxfb2vt8" path="res://Scenes/end_screen.tscn" id="6_ywie1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o0n4i"]
 texture = ExtResource("1_g68pe")
@@ -133,3 +134,5 @@ shape = SubResource("RectangleShape2D_802xl")
 
 [node name="Spawnner" type="Node2D" parent="."]
 script = ExtResource("6_skjeu")
+
+[node name="EndScreen" parent="." instance=ExtResource("6_ywie1")]
