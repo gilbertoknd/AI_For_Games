@@ -74,6 +74,7 @@ func die() -> void:
 func show_end_screen(message: String):
 	var end_scene = preload("res://Scenes/end_screen.tscn").instantiate()
 	end_scene.show_message(message)
-
-	get_tree().root.add_child(end_scene)
-	get_tree().paused = true
+	queue_free()
+	#get_tree().root.add_child(end_scene)
+	#get_tree().paused = true
+	

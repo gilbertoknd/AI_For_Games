@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://crvtbbw68d26e"]
+[gd_scene load_steps=6 format=3 uid="uid://crvtbbw68d26e"]
 
 [ext_resource type="Script" uid="uid://dx6627ts0sjhm" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://c2k17mhomhon" path="res://Sprites/MainCharacter.png" id="2_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://c1ppnkxfb2vt8" path="res://Scenes/end_screen.tscn" id="3_6t5aa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pru3k"]
 radius = 8.0
@@ -25,3 +26,5 @@ shape = SubResource("CircleShape2D_pru3k")
 
 [node name="Player_AreaCollisionShape2D" type="CollisionShape2D" parent="Player_Area2D"]
 shape = SubResource("CircleShape2D_cckvs")
+
+[node name="EndScreen" parent="." instance=ExtResource("3_6t5aa")]
